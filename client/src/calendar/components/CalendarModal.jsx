@@ -1,5 +1,5 @@
 import { addHours, differenceInSeconds } from 'date-fns';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Modal from 'react-modal';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -7,7 +7,7 @@ import es from 'date-fns/locale/es';
 
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
-import { useUIStore } from '../../hooks';
+import { useUIStore, useCalendarStore } from '../../hooks';
 
 registerLocale('es', es);
 
@@ -26,12 +26,12 @@ Modal.setAppElement('#root');
 
 export const CalendarModal = () => {
   const { isDateModalOpen, closeDateModal } = useUIStore();
+  const { activeEvent, startSavingEvent } = useCalendarStore();
 
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formValues, setFormValues] = useState({
-    title: 'Wilmer',
-    notes:
-      'LoremDolor enim id reprehenderit officia ex reprehenderit dolor anim commodo.',
+    title: '',
+    notes: '',
     start: new Date(),
     end: addHours(new Date(), 2),
   });
@@ -39,8 +39,14 @@ export const CalendarModal = () => {
   const titleClass = useMemo(() => {
     if (!formSubmitted) return '';
 
-    return formValues.title.length > 0 ? '' : 'is-invalid';
-  }, [formValues.title, formSubmitted]);
+    return formValues?.title?.length > 0 ? '' : 'is-invalid';
+  }, [formValues?.title, formSubmitted]);
+
+  useEffect(() => {
+    if (!activeEvent !== null) {
+      setFormValues({ ...activeEvent });
+    }
+  }, [activeEvent]);
 
   const onInputChanged = ({ target }) => {
     setFormValues({
@@ -60,7 +66,7 @@ export const CalendarModal = () => {
     closeDateModal();
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     setFormSubmitted(true);
     const difference = differenceInSeconds(formValues.end, formValues.start);
@@ -69,9 +75,11 @@ export const CalendarModal = () => {
       return;
     }
 
-    if (formValues.title.length <= 0) return;
+    if (formValues?.title?.length <= 0) return;
 
-    console.log(formValues);
+    await startSavingEvent(formValues);
+    closeDateModal();
+    setFormSubmitted(false);
   };
 
   return (
