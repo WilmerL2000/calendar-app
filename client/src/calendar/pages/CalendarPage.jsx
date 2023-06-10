@@ -4,6 +4,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { addHours } from 'date-fns';
 import { localizer, getMessagesES } from '../../helpers';
 import { useState } from 'react';
+import { useUIStore } from '../../hooks';
 
 const events = [
   {
@@ -20,6 +21,8 @@ const events = [
 ];
 
 export const CalendarPage = () => {
+  const { openDateModal } = useUIStore();
+
   const [lastView, setLastView] = useState(
     localStorage.getItem('lastView') || 'week'
   );
@@ -34,7 +37,9 @@ export const CalendarPage = () => {
     return { style };
   };
 
-  const onDoubleClick = (event) => {};
+  const onDoubleClick = (event) => {
+    openDateModal();
+  };
 
   const onSelect = (event) => {};
 
