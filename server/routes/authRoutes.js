@@ -4,11 +4,12 @@ import {
   loginUser,
   revalidateToken,
 } from '../controllers/authController.js';
+import validateJWT from '../middleware/validateJWT.js';
 
 const router = express.Router();
 
 router.post('/new', createUser);
 router.post('/', loginUser);
-router.get('/renew', revalidateToken);
+router.get('/renew', validateJWT, revalidateToken);
 
 export default router;
