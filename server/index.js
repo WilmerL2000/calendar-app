@@ -4,6 +4,7 @@ import * as dotenv from 'dotenv';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import authRoutes from './routes/authRoutes.js';
+import eventRoutes from './routes/eventRoutes.js';
 import connectDB from './mongodb/connect.js';
 
 dotenv.config();
@@ -21,6 +22,7 @@ app.use(cors());
 
 // *Routes
 app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/events', eventRoutes);
 
 const PORT = process.env.PORT || 6001;
 

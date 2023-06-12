@@ -32,7 +32,7 @@ const createUser = async (req, res) => {
     const savedUser = await user.save();
     const token = await generateJWT({ uid: user._id });
 
-    res.status(201).send({
+    res.status(201).json({
       ok: true,
       uid: savedUser.id,
       name: savedUser.name,
