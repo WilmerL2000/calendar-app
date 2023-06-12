@@ -87,13 +87,21 @@ export const CalendarModal = () => {
       isOpen={isDateModalOpen}
       onRequestClose={closeDateModal}
       style={customStyles}
-      className="modal"
+      className="modal "
       overlayClassName="modal-fondo"
       closeTimeoutMS={200}
     >
-      <h1> Nuevo evento </h1>
-      <hr />
-      <form className="container" onSubmit={onSubmit}>
+      <div className="modal-header">
+        <h1 className="modal-title"> Nuevo evento </h1>
+        <button
+          type="button"
+          className="btn btn-outline-dark"
+          onClick={closeDateModal}
+        >
+          <span>&times;</span>
+        </button>
+      </div>
+      <form className="container modal-body" onSubmit={onSubmit}>
         <div className="form-group mb-2">
           <label>Fecha y hora inicio</label>
           <DatePicker

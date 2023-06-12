@@ -1,12 +1,14 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { LoginPage } from '../auth';
 import { CalendarPage } from '../calendar';
+import { useSelector } from 'react-redux';
 
 export const AppRouter = () => {
-  const authStatus = 'not-authenticateds';
+  const { status } = useSelector((state) => state.auth);
+
   return (
     <Routes>
-      {authStatus === 'not-authenticated' ? (
+      {status === 'not-authenticated' ? (
         <Route path="/auth/*" element={<LoginPage />} />
       ) : (
         <Route path="/*" element={<CalendarPage />} />
