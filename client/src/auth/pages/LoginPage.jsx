@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react';
 import './LoginPage.css';
-import { useForm } from '../../hooks';
+import { useAuthStore, useForm } from '../../hooks';
+import { useEffect } from 'react';
+import Swal from 'sweetalert2';
 
 const loginFormFields = {
   loginEmail: '',
@@ -15,6 +17,7 @@ const registerFormFields = {
 };
 
 export const LoginPage = () => {
+  const { startLogin, errorMessage, startRegister } = useAuthStore();
   const {
     loginEmail,
     loginPassword,
@@ -36,13 +39,36 @@ export const LoginPage = () => {
     return false;
   }, [switchLogin]);
 
+  const nonEqual = useMemo(() => {
+    if (registerPasswordRepeat !== '') {
+      if (registerPassword !== registerPasswordRepeat) {
+        return true;
+      }
+    }
+    return false;
+  }, [registerPassword, registerPasswordRepeat]);
+
   const loginSubmit = (e) => {
     e.preventDefault();
+    startLogin({ email: loginEmail, password: loginPassword });
   };
 
   const registerSubmit = (e) => {
     e.preventDefault();
+    if (nonEqual) return;
+
+    startRegister({
+      email: registerEmail,
+      password: registerPassword,
+      name: registerName,
+    });
   };
+
+  useEffect(() => {
+    if (errorMessage !== undefined) {
+      Swal.fire('Error en la autenticación', errorMessage, 'error');
+    }
+  }, [errorMessage]);
 
   return (
     <div className="container login-container">
@@ -80,7 +106,9 @@ export const LoginPage = () => {
               >
                 <p>
                   ¿No tienes una cuenta?{' '}
-                  <span className="text-primary">Registrate</span>
+                  <span role="button" className="text-primary cursor-pointer">
+                    Registrate
+                  </span>
                 </p>
               </div>
             </form>
@@ -130,7 +158,13 @@ export const LoginPage = () => {
                   onChange={onRegisterInputChange}
                 />
               </div>
-
+              {nonEqual && (
+                <div className="d-grid gap-3 mb-2">
+                  <span className="rounded text-white bg-danger p-2">
+                    Las contraseñas no coinciden
+                  </span>
+                </div>
+              )}
               <div className="d-grid gap-2">
                 <input
                   type="submit"
@@ -144,7 +178,9 @@ export const LoginPage = () => {
               >
                 <p>
                   ¿Ya tienes una cuenta?{' '}
-                  <span className="text-white">Inicia sesión</span>
+                  <span role="button" className="text-white cursor-pointer">
+                    Inicia sesión
+                  </span>
                 </p>
               </div>
             </form>

@@ -1,20 +1,29 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { LoginPage } from '../auth';
 import { CalendarPage } from '../calendar';
-import { useSelector } from 'react-redux';
+import { useAuthStore } from '../hooks';
+import { useEffect } from 'react';
 
 export const AppRouter = () => {
-  const { status } = useSelector((state) => state.auth);
+  const { status, checkAuthToken } = useAuthStore();
+
+  useEffect(() => {
+    checkAuthToken();
+  }, []);
 
   return (
     <Routes>
-      {status === 'not-authenticated' ? (
-        <Route path="/auth/*" element={<LoginPage />} />
+      {status === 'authenticated' ? (
+        <>
+          <Route path="/" element={<CalendarPage />} />
+          <Route path="/*" element={<Navigate to="/" />} />
+        </>
       ) : (
-        <Route path="/*" element={<CalendarPage />} />
+        <>
+          <Route path="/*" element={<Navigate to="/auth/login" />} />
+          <Route path="/auth/*" element={<LoginPage />} />
+        </>
       )}
-
-      <Route path="/*" element={<Navigate to="/auth/login" />} />
     </Routes>
   );
 };

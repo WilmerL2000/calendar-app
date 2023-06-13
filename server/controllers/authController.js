@@ -92,9 +92,9 @@ const loginUser = async (req, res) => {
  */
 const revalidateToken = async (req, res) => {
   try {
-    const { id } = req.user;
+    const { id, name } = req.user;
     const token = await generateJWT({ uid: id });
-    res.status(200).json({ ok: true, token });
+    res.status(200).json({ ok: true, token, id, name });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

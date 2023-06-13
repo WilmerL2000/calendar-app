@@ -8,6 +8,8 @@ import es from 'date-fns/locale/es';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import { useUIStore, useCalendarStore } from '../../hooks';
+import { useDispatch } from 'react-redux';
+import { onSetActiveEvent } from '../../store';
 
 registerLocale('es', es);
 
@@ -27,6 +29,7 @@ Modal.setAppElement('#root');
 export const CalendarModal = () => {
   const { isDateModalOpen, closeDateModal } = useUIStore();
   const { activeEvent, startSavingEvent } = useCalendarStore();
+  const dispatch = useDispatch();
 
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formValues, setFormValues] = useState({
@@ -64,6 +67,7 @@ export const CalendarModal = () => {
 
   const onCloseModal = () => {
     closeDateModal();
+    dispatch(onSetActiveEvent(null));
   };
 
   const onSubmit = async (e) => {
@@ -96,7 +100,7 @@ export const CalendarModal = () => {
         <button
           type="button"
           className="btn btn-outline-dark"
-          onClick={closeDateModal}
+          onClick={onCloseModal}
         >
           <span>&times;</span>
         </button>
