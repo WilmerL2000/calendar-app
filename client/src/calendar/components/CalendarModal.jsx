@@ -1,35 +1,22 @@
 import { addHours, differenceInSeconds } from 'date-fns';
+import es from 'date-fns/locale/es';
 import { useEffect, useMemo, useState } from 'react';
-import Modal from 'react-modal';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import es from 'date-fns/locale/es';
+import Modal from 'react-modal';
 
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
-import { useUIStore, useCalendarStore } from '../../hooks';
-import { useDispatch } from 'react-redux';
-import { onSetActiveEvent } from '../../store';
+import { customStyles } from '../../constants';
+import { useCalendarStore, useUIStore } from '../../hooks';
 
 registerLocale('es', es);
-
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
-};
 
 Modal.setAppElement('#root');
 
 export const CalendarModal = () => {
   const { isDateModalOpen, closeDateModal } = useUIStore();
   const { activeEvent, startSavingEvent } = useCalendarStore();
-  const dispatch = useDispatch();
 
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formValues, setFormValues] = useState({
@@ -65,11 +52,6 @@ export const CalendarModal = () => {
     });
   };
 
-  const onCloseModal = () => {
-    closeDateModal();
-    dispatch(onSetActiveEvent(null));
-  };
-
   const onSubmit = async (e) => {
     e.preventDefault();
     setFormSubmitted(true);
@@ -100,7 +82,7 @@ export const CalendarModal = () => {
         <button
           type="button"
           className="btn btn-outline-dark"
-          onClick={onCloseModal}
+          onClick={closeDateModal}
         >
           <span>&times;</span>
         </button>

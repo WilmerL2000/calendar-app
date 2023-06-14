@@ -5,6 +5,7 @@ import {
   FabAddNew,
   FabDelete,
   Navbar,
+  DeleteEventModal,
 } from '../';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { localizer, getMessagesES } from '../../helpers';
@@ -19,7 +20,15 @@ export const CalendarPage = () => {
     localStorage.getItem('lastView') || 'week'
   );
 
-  const eventStyleGetter = (event, start, end, isSelected) => {
+  /**
+   * The function returns a style object for a calendar event based on whether the event belongs to the
+   * current user or not.
+   * @returns The function `eventStyleGetter` returns an object with a `style` property that contains
+   * an object with CSS styles for the event element in a calendar. The styles include a background
+   * color, border radius, opacity, and text color. The background color is determined based on whether
+   * the event belongs to the current user or not.
+   */
+  const eventStyleGetter = (event) => {
     const isMyEvent =
       user.uid === event.user._id || user.uid === event.user.uid;
 
@@ -32,7 +41,7 @@ export const CalendarPage = () => {
     return { style };
   };
 
-  const onDoubleClick = (event) => {
+  const onDoubleClick = () => {
     openDateModal();
   };
 
@@ -40,6 +49,9 @@ export const CalendarPage = () => {
     setActiveEvent(event);
   };
 
+  /**
+   * The function sets the last view in local storage and updates the state with the new view.
+   */
   const onViewChanged = (event) => {
     localStorage.setItem('lastView', event);
     setLastView(event);
@@ -70,6 +82,7 @@ export const CalendarPage = () => {
         onView={onViewChanged}
       />
       <CalendarModal />
+      <DeleteEventModal />
       <FabAddNew />
       <FabDelete />
     </>

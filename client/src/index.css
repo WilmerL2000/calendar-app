@@ -38,6 +38,10 @@
   padding: 10px;
 }
 
+.modal__detele {
+  max-height: 250px;
+}
+
 /* FABS */
 .fab {
   border-radius: 100%;
