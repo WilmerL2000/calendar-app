@@ -3,6 +3,8 @@ import { LoginPage } from '../auth';
 import { CalendarPage, Loader } from '../calendar';
 import { useAuthStore } from '../hooks';
 import { useEffect } from 'react';
+import { AuthLayout } from '../layouts/AuthLayout';
+import { CalendarLayout } from '../layouts/CalendarLayout';
 
 export const AppRouter = () => {
   const { status, checkAuthToken } = useAuthStore();
@@ -19,13 +21,17 @@ export const AppRouter = () => {
     <Routes>
       {status === 'authenticated' ? (
         <>
-          <Route path="/" element={<CalendarPage />} />
+          <Route path="/" element={<CalendarLayout />}>
+            <Route index element={<CalendarPage />} />
+          </Route>
           <Route path="/*" element={<Navigate to="/" />} />
         </>
       ) : (
         <>
-          <Route path="/*" element={<Navigate to="/auth/login" />} />
-          <Route path="/auth/*" element={<LoginPage />} />
+          <Route path="/login" element={<AuthLayout />}>
+            <Route index element={<LoginPage />} />
+          </Route>
+          <Route path="/*" element={<Navigate to="/login" />} />
         </>
       )}
     </Routes>
