@@ -123,7 +123,7 @@ export const CalendarModal = () => {
           <label>Fecha y hora fin</label>
           <DatePicker
             minDate={formValues.start}
-            selected={formValues.start}
+            selected={formValues.end}
             onChange={(e) => onDateChanged(e, 'end')}
             className="form-control"
             dateFormat="Pp"

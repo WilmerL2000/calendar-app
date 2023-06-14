@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { LoginPage } from '../auth';
-import { CalendarPage } from '../calendar';
+import { CalendarPage, Loader } from '../calendar';
 import { useAuthStore } from '../hooks';
 import { useEffect } from 'react';
 
@@ -10,6 +10,10 @@ export const AppRouter = () => {
   useEffect(() => {
     checkAuthToken();
   }, []);
+
+  if (status === 'checking') {
+    return <Loader />;
+  }
 
   return (
     <Routes>
