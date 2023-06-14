@@ -1,5 +1,8 @@
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
+import { useAuthStore } from '../hooks';
 
 export const AuthLayout = () => {
-  return <Outlet />;
+  const { status } = useAuthStore();
+
+  return status === 'authenticated' ? <Navigate to="/" /> : <Outlet />;
 };

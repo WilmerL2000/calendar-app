@@ -1,5 +1,7 @@
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
+import { useAuthStore } from '../hooks';
 
 export const CalendarLayout = () => {
-  return <Outlet />;
+  const { status } = useAuthStore();
+  return status !== 'authenticated' ? <Navigate to="/login" /> : <Outlet />;
 };
