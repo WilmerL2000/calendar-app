@@ -1,7 +1,10 @@
 import axios from 'axios';
+import { getEnvVariables } from '../helpers/getEnvVariables';
+
+const { VITE_API_URL } = getEnvVariables();
 
 const calendarApi = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: VITE_API_URL,
 });
 
 /* This code block is adding an interceptor to the `calendarApi` instance of the Axios library. The
