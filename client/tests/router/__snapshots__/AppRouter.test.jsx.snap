@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test on the AppRouter It must show the login if it is not authenticated  1`] = `
+<div>
+  <div
+    class="container login-container"
+  >
+    <div
+      class="d-flex justify-content-center"
+    >
+      <div
+        class="col-md-6 login-form-1 "
+      >
+        <h3>
+          Ingreso
+        </h3>
+        <form>
+          <div
+            class="form-group mb-2"
+          >
+            <input
+              class="form-control"
+              name="loginEmail"
+              placeholder="Correo"
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="form-group mb-2"
+          >
+            <input
+              class="form-control"
+              name="loginPassword"
+              placeholder="Contraseña"
+              type="password"
+              value=""
+            />
+          </div>
+          <div
+            class="d-grid gap-2"
+          >
+            <input
+              class="btnSubmit"
+              type="submit"
+              value="Login"
+            />
+          </div>
+          <div
+            class="text-center mt-4"
+          >
+            <p>
+              ¿No tienes una cuenta?
+               
+              <span
+                class="text-primary cursor-pointer"
+                role="button"
+              >
+                Registrate
+              </span>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;

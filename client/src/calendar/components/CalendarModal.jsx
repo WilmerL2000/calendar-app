@@ -9,10 +9,13 @@ import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import { customStyles } from '../../constants';
 import { useCalendarStore, useUIStore } from '../../hooks';
+import { getEnvVariables } from '../../helpers';
 
 registerLocale('es', es);
 
-Modal.setAppElement('#root');
+if (getEnvVariables().VITE_MODE !== 'test') {
+  Modal.setAppElement('#root');
+}
 
 export const CalendarModal = () => {
   const { isDateModalOpen, closeDateModal } = useUIStore();

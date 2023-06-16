@@ -1,8 +1,11 @@
 import Modal from 'react-modal';
 import { useCalendarStore, useUIStore } from '../../hooks';
 import { customStyles } from '../../constants';
+import { getEnvVariables } from '../../helpers';
 
-Modal.setAppElement('#root');
+if (getEnvVariables().VITE_MODE !== 'test') {
+  Modal.setAppElement('#root');
+}
 
 export const DeleteEventModal = () => {
   const { startDeletingEvent } = useCalendarStore();
