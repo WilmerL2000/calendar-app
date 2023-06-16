@@ -14,13 +14,13 @@ import {
   initialState,
 } from '../../fixtures/calendarStates';
 
-describe('Pruebas en el authSlice', () => {
-  test('Debe de regresar  el estado por defecto', () => {
+describe('Tests in the authSlice', () => {
+  test('It should return the default state', () => {
     const state = calendarSlice.getInitialState();
     expect(state).toEqual(initialState);
   });
 
-  test('onSetActiveEvent debe de asignarse el state ', () => {
+  test('onSetActiveEvent must be assigned the state ', () => {
     const state = calendarSlice.reducer(
       calendarWithEventsState,
       onSetActiveEvent(events[0])
@@ -28,7 +28,7 @@ describe('Pruebas en el authSlice', () => {
     expect(state.activeEvent).toEqual(events[0]);
   });
 
-  test('onAddNewEvent debe de agregar el evento', () => {
+  test('onAddNewEvent should add the event', () => {
     const newEvent = {
       id: '3',
       title: 'Cumpleanios de Maria',
@@ -45,7 +45,7 @@ describe('Pruebas en el authSlice', () => {
     expect(state.events).toEqual([...events, newEvent]);
   });
 
-  test('onUpdateEvennt debe de actualizar el evento', () => {
+  test('onUpdateEvennt should update the event', () => {
     const updatedEvent = {
       id: '1',
       title: 'Cumpleanios de Wilmer act',
@@ -62,7 +62,7 @@ describe('Pruebas en el authSlice', () => {
     expect(state.events).toContain(updatedEvent);
   });
 
-  test('onDeleteEvent debe de borrar el evento activo', () => {
+  test('onDeleteEvent should delete the active event', () => {
     const state = calendarSlice.reducer(
       calendarWithActiveEventState,
       onDeleteEvent()
@@ -71,7 +71,7 @@ describe('Pruebas en el authSlice', () => {
     expect(state.events).not.toContain(events[0]);
   });
 
-  test('onLoadEvents debe de establecer los eventos', () => {
+  test('onLoadEvents should set the events', () => {
     const state = calendarSlice.reducer(initialState, onLoadEvents(events));
     expect(state.isLoading).toBeFalsy();
     expect(state.events).toEqual(events);
@@ -80,7 +80,7 @@ describe('Pruebas en el authSlice', () => {
     expect(state.events.length).toBe(events.length);
   });
 
-  test('onLogoutCalendar debe de limpiar el state', () => {
+  test('onLogoutCalendar should clear the state', () => {
     const state = calendarSlice.reducer(
       calendarWithActiveEventState,
       onLogoutCalendar()

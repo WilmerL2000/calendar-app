@@ -1,6 +1,6 @@
 import { onCloseDateModal, onOpenDateModal, uiSlice } from '../../../src/store';
 
-describe('Pruebas en el uiSlice', () => {
+describe('Testing on the uiSlice', () => {
   test('Debe de regresar el estado por defecto', () => {
     expect(uiSlice.getInitialState()).toEqual({
       isDateModalOpen: false,
@@ -8,7 +8,7 @@ describe('Pruebas en el uiSlice', () => {
     });
   });
 
-  test('Debe de cambiar el isDateModalOpen correctamente', () => {
+  test('You must change the isDateModalOpen correctly', () => {
     let state = uiSlice.getInitialState();
     state = uiSlice.reducer(state, onOpenDateModal());
     expect(state.isDateModalOpen).toBeTruthy();

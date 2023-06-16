@@ -22,8 +22,8 @@ const getMockStore = (initialState) => {
   });
 };
 
-describe('Pruebas en el custom hook useUIStore', () => {
-  test('Debe de regresar los valores por defecto', () => {
+describe('Tests on the useUIStore custom hook', () => {
+  test('It should return the default values', () => {
     const mockStore = getMockStore({
       isDateModalOpen: false,
       isDeleteModalOpen: false,
@@ -51,7 +51,7 @@ describe('Pruebas en el custom hook useUIStore', () => {
     });
   });
 
-  test('openDateModal debe de colocar true en el isDateModalOpen ', () => {
+  test('openDateModal must put true in the isDateModalOpen ', () => {
     const mockStore = getMockStore({
       isDateModalOpen: false,
       isDeleteModalOpen: false,
@@ -78,7 +78,7 @@ describe('Pruebas en el custom hook useUIStore', () => {
     expect(result.current.isDateModalOpen).toBeTruthy();
   });
 
-  test('closeDateModal debe de colocar false en el isDateModalOpen ', () => {
+  test('closeDateModal must put false in the isDateModalOpen ', () => {
     const mockStore = getMockStore({
       isDateModalOpen: true,
       isDeleteModalOpen: false,
@@ -99,7 +99,7 @@ describe('Pruebas en el custom hook useUIStore', () => {
     expect(result.current.isDateModalOpen).toBeFalsy();
   });
 
-  test('toggleDateModal debe de cambiar el state de isDateModalOpen ', () => {
+  test('toggleDateModal should change the state of isDateModalOpen', () => {
     const mockStore = getMockStore({
       isDateModalOpen: true,
       isDeleteModalOpen: false,
