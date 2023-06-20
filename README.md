@@ -321,7 +321,7 @@ _Follow the instructions below_
 - RESTful errors with HTTP status codes.
 - Applied middleware for routes that require authentication.
 
-### Rest API Endpoint
+### Rest API URL
 
 `http://localhost:3001`
 
