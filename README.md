@@ -55,6 +55,9 @@
       </ul>
     </li>
     <li><a href="#contact">Contact</a></li>
+    <li>
+      <a href="#rest-api">REST API</a>
+    </li>
   </ol>
 </details>
 
@@ -292,14 +295,231 @@ _Follow the instructions below_
    ```js
    ENV_VAR = 'ENTER YOUR KEY';
    ```
-6. Start project client project
+6. Start client project
    ```sh
+   cd client
    npm run dev
    ```
-7. Start project server project
+7. Start server project
    ```sh
+   cd server
    npm start
    ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- REST API -->
+
+## REST API
+
+### Features
+
+- RESTful routing.
+- Models with proper relationships.
+- Controllers/Models etc with proper separation of concerns.
+- JWT Authentication.
+- RESTful errors with HTTP status codes.
+- Applied middleware for routes that require authentication.
+
+### Rest API Endpoint
+
+`http://localhost:3001`
+
+### Routes List:
+
+#### Auth
+
+#### 1. Create New User
+
+```
+ POST /api/v1/auth/new
+```
+
+> Body
+
+```javascript
+    {
+      name: String,
+      email: String,
+      password: String
+    }
+```
+
+> Response
+
+```javascript
+    {
+      ok: Boolean,
+      uid: String,
+      name: String,
+      token: String
+    }
+```
+
+#### 2. Login
+
+```
+ POST /api/v1/auth
+```
+
+> Body
+
+```javascript
+    {
+      email: String,
+      password: String
+    }
+```
+
+> Response
+
+```javascript
+    {
+      ok: Boolean,
+      uid: String,
+      name: String,
+      token: String
+    }
+```
+
+#### 3. Revalidate JWT
+
+```
+ GET /api/v1/auth/renew
+```
+
+> Response
+
+```javascript
+    {
+      ok: Boolean,
+      uid: String,
+      name: String,
+      token: String
+    }
+```
+
+#### Events
+
+#### 1. Get Events
+
+```
+ GET /api/v1/events
+```
+
+> Response
+
+```javascript
+    {
+      ok: Boolean,
+      events: [
+          {
+            title: String,
+            notes: String,
+            start: Date,
+            end: Date,
+            user: {
+                _id: String,
+                name: String
+            },
+            id: String
+          }
+        ]
+    }
+```
+
+#### 2. Create New Event
+
+```
+ POST /api/v1/events
+```
+
+> Body
+
+```javascript
+    {
+      title: String,
+      notes: String,
+      start: Date,
+      end: Date
+    }
+```
+
+> Response
+
+```javascript
+    {
+      ok: Boolean,
+      event: {
+          title: String,
+          notes: String,
+          start: Date,
+          end: Date,
+          user: String,
+          id: String
+      }
+    }
+```
+
+#### 3. Update Event
+
+```
+ PUT /api/v1/events/{id}
+```
+
+> Paremeter
+
+```javascript
+id: String;
+```
+
+> Body
+
+```javascript
+    {
+      title: String,
+      notes: String,
+      start: Date,
+      end: Date
+    }
+```
+
+> Response
+
+```javascript
+    {
+      ok: Boolean,
+      event: {
+          title: String,
+          notes: String,
+          start: Date,
+          end: Date,
+          user: String,
+          id: String
+      }
+    }
+```
+
+#### 4. Delete Event
+
+```
+ DELETE /api/v1/events/{id}
+```
+
+> Paremeter
+
+```javascript
+id: String;
+```
+
+> Response
+
+```javascript
+    {
+      ok: Boolean,
+      msg: String
+    }
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
