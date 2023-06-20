@@ -327,9 +327,9 @@ _Follow the instructions below_
 
 ### Routes List:
 
-#### Auth
+### Auth
 
-#### 1. Create New User
+### 1. Create New User
 
 ```
  POST /api/v1/auth/new
@@ -356,7 +356,7 @@ _Follow the instructions below_
     }
 ```
 
-#### 2. Login
+### 2. Login
 
 ```
  POST /api/v1/auth
@@ -382,7 +382,7 @@ _Follow the instructions below_
     }
 ```
 
-#### 3. Revalidate JWT
+### 3. Revalidate JWT
 
 ```
  GET /api/v1/auth/renew
@@ -399,9 +399,9 @@ _Follow the instructions below_
     }
 ```
 
-#### Events
+### Events
 
-#### 1. Get Events
+### 1. Get Events
 
 ```
  GET /api/v1/events
@@ -428,7 +428,7 @@ _Follow the instructions below_
     }
 ```
 
-#### 2. Create New Event
+### 2. Create New Event
 
 ```
  POST /api/v1/events
@@ -461,7 +461,7 @@ _Follow the instructions below_
     }
 ```
 
-#### 3. Update Event
+### 3. Update Event
 
 ```
  PUT /api/v1/events/{id}
@@ -500,7 +500,7 @@ id: String;
     }
 ```
 
-#### 4. Delete Event
+### 4. Delete Event
 
 ```
  DELETE /api/v1/events/{id}
