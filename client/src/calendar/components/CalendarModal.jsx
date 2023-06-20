@@ -78,7 +78,10 @@ export const CalendarModal = () => {
       closeTimeoutMS={200}
     >
       <div className="modal-header">
-        <h1 className="modal-title"> Nuevo evento </h1>
+        <h1 className="modal-title">
+          {' '}
+          {!activeEvent ? 'Nuevo evento' : 'Editar evento'}{' '}
+        </h1>
         <button
           type="button"
           className="btn btn-outline-dark"
