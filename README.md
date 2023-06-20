@@ -57,6 +57,9 @@
     <li><a href="#contact">Contact</a></li>
     <li>
       <a href="#rest-api">REST API</a>
+      <ul>
+        <li><a href="#routes-list">Routes List</a></li>
+      </ul>
     </li>
   </ol>
 </details>
@@ -310,9 +313,9 @@ _Follow the instructions below_
 
 <!-- REST API -->
 
-## REST API
+# REST API
 
-### Features
+## Features
 
 - RESTful routing.
 - Models with proper relationships.
@@ -325,7 +328,7 @@ _Follow the instructions below_
 
 `http://localhost:3001`
 
-### Routes List:
+## Routes List:
 
 ### Auth
 
