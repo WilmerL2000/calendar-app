@@ -108,7 +108,6 @@ This project is developed with MERN Stack and other technologies. Allows users t
         <br><strong>Axios</strong>        
       </td>
       <td align="center" width="96">
-          <img src="https://res.cloudinary.com/wils09/image/upload/v1684018369/GitHub/assets/formik_ah64vc.png" width="48" height="48" alt="Formik" />
         <br><strong>React Big Calendar</strong>        
       </td>         
     </tr>
