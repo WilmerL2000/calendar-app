@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 jest.mock('../../src/hooks/useAuthStore');
 
-describe('Test on the AppRouter', () => {
+describe('Test on the <AppRouter/> component', () => {
   const mockCheckAuthToken = jest.fn();
   beforeEach(() => jest.clearAllMocks());
 

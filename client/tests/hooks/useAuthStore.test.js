@@ -7,6 +7,17 @@ import { Provider } from 'react-redux';
 import { testUserCredentials } from '../fixtures/testUser';
 import { calendarApi } from '../../src/api';
 
+/**
+ * The function returns a mock Redux store with an initial state for the auth slice.
+ * @param initialState - The initial state is the starting state of the Redux store. It is an object
+ * that contains the initial values of the state properties defined in the reducers. In the code above,
+ * the initialState is passed as a parameter to the getMockStore function and is used to set the
+ * initial state of the auth slice
+ * @returns The function `getMockStore` is returning a configured Redux store with an initial state for
+ * the `auth` slice. The store is created using the `configureStore` function from the `redux-toolkit`
+ * library, and the `reducer` property is set to an object with a single key `auth` that maps to the
+ * reducer function for the `authSlice`.
+ */
 const getMockStore = (initialState) => {
   return configureStore({
     reducer: { auth: authSlice.reducer },

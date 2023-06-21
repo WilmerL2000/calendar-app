@@ -11,12 +11,12 @@ import {
 } from '../../fixtures/authStates';
 import { testUserCredentials } from '../../fixtures/testUser';
 
-describe('Pruebas en el authSlice', () => {
-  test('Debe de regresar el estado por defecto', () => {
+describe('Tests in the authSlice', () => {
+  test('It should return the default state', () => {
     expect(authSlice.getInitialState()).toEqual(initialState);
   });
 
-  test('Debe de realizar el login ', () => {
+  test('You must log in', () => {
     const state = authSlice.reducer(initialState, onLogin(testUserCredentials));
     expect(state).toEqual({
       status: 'authenticated',
@@ -25,12 +25,12 @@ describe('Pruebas en el authSlice', () => {
     });
   });
 
-  test('Debe de realizar el logout', () => {
+  test('You must log out', () => {
     const state = authSlice.reducer(authenticatedState, onLogout());
     expect(state).toEqual(notAuthenticatedState);
   });
 
-  test('Debe de realizar el logout con un mensaje de error', () => {
+  test('You should log out with an error message', () => {
     const errorMessage = 'Credenciales incorrectas';
     const state = authSlice.reducer(authenticatedState, onLogout(errorMessage));
     expect(state).toEqual({
@@ -40,7 +40,7 @@ describe('Pruebas en el authSlice', () => {
     });
   });
 
-  test('Debe de limpiar el mensaje de error', () => {
+  test('You should clear the error message', () => {
     const errorMessage = 'Credenciales incorrectas';
     const state = authSlice.reducer(authenticatedState, onLogout(errorMessage));
 
