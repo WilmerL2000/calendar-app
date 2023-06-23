@@ -54,13 +54,13 @@
         <li><a href="#mobile">Mobile</a></li>
       </ul>
     </li>
-    <li><a href="#contact">Contact</a></li>
     <li>
       <a href="#rest-api">REST API</a>
       <ul>
         <li><a href="#routes-list">Routes List</a></li>
       </ul>
     </li>
+    <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
 
